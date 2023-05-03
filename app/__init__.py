@@ -9,10 +9,11 @@ from .cart.routes import cart
 from .models import db, User, Product
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_cors import CORS
 
 #hello
 app = Flask(__name__)
-
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 login = LoginManager()
 
 @login.user_loader
