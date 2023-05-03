@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "ECOMMERCE",
+            "connectString": "postgres://bzxfynlg:9XCC9hf1ZFVWaLQ4uZsGV1MkyVCmcOw5@ruby.db.elephantsql.com/bzxfynlg"
+        }
+    ]
+}

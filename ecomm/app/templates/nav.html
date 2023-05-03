@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light ">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="{{ url_for('homePage') }}">BAMS</a>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ url_for('homePage') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('aboutUs') }}">About Us</a>
+          {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link">Welcome {{current_user.first_name}}!</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('cart.viewAllProducts') }}"><i class="fa-solid fa-tags"></i> Shop
+            Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('cart.viewMyCart') }}"><i class="fa-solid fa-cart-shopping"></i> My
+            Cart</a>
+        </li>
+        <a class="btn btn-outline-success justify-content-end" href="{{ url_for('auth.logOut') }}"
+          role="button">Logout</a>
+      </ul>
+
+      {%else%}
+
+      <a class="btn btn-outline-dark justify-content-end" href="{{ url_for('auth.loginPage') }}" role="button">Login</a>
+      <a class="btn btn-outline-dark justify-content-end" href="{{ url_for('auth.registerPage') }}"
+        role="button">Register</a>
+
+      {% endif %}
+    </div>
+
+  </div>
+</nav>
