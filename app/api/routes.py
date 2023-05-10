@@ -1,35 +1,35 @@
 from flask import Blueprint, request
-from ..models import Product
+from ..models import Exercise
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
 
 
-@api.get('/product')
-def getProduct():
-    product = Product.query.all()
-    productlist = [p.to_dict() for p in product]
+@api.get('/exercise')
+def getExercise():
+    exercise = Exercise.query.all()
+    exerciselist = [e.to_dict() for e in exercise]
     return {
         'status': 'ok',
-        'data': productlist
+        'data': exerciselist
     }
 
-@api.get('/product/<int:product_id>')
-def getSingleProduct(product_id):
-    p = Product.query.get(product_id)
-    if p:
-        product = p.to_dict()
+@api.get('/exercise/<int:exercise_id>')
+def getSingleExcercise(exercise_id):
+    e = Exercise.query.get(exercise_id)
+    if e:
+        exercise = e.to_dict()
         return {
             'status': 'ok',
-            'data' : product
+            'data' : exercise
         }
     return {
         'status' : 'NOT ok',
-        'message' : 'That product is not available!!'
+        'message' : 'That exercise is not available!!'
     }
 
-@api.post('/createproduct')
-def createProductAPI():
+@api.post('/createexercise')
+def createExerciseAPI():
     data = request.json # This coming from the POST request body
 
     title = data['title']
@@ -39,25 +39,25 @@ def createProductAPI():
     img_url = data['img_url']
    
 
-    new = Product(title, price, description, category, img_url)
-    new.saveProduct()
+    new = Exercise(title, price, description, category, img_url)
+    new.saveExercise()
     return {
         'status' : 'ok',
-        'message' : 'new product has been created!'
+        'message' : 'new exercise has been created!'
     }
 
-@api.get('/product/item/<int:user_id>')
-def getPostsByUser(user_id):
-    product = Product.query.filter(Product.user_id == user_id).all()
+@api.get('/exercise/item/<int:user_id>')
+def getexerciseByUser(user_id):
+    exercise = Exercise.query.filter(Exercise.user_id == user_id).all()
     # Just so we can see the other example of the same query above:
     # posts = Post.query.filter_by(user_id == user_id).all()
 
-    if product:
+    if exercise:
         return {
             'status' : 'ok',
-            'product' : [p.to_dict() for p in product]
+            'exercise' : [e.to_dict() for e in exercise]
         }
     return {
         'status' : ' NOT ok',
-        'message' : 'No product available to return from that ID'
+        'message' : 'No exercise available to return from that ID'
     }

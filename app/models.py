@@ -4,10 +4,10 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash
 db = SQLAlchemy()
 
-cart = db.Table(
-    'my_cart',
+plan = db.Table(
+    'my_plan',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
-    db.Column('product_id', db.Integer, db.ForeignKey('product.id'), nullable=False),
+    db.Column('exercise_id', db.Integer, db.ForeignKey('exercise.id'), nullable=False),
 )
 
 class User(db.Model, UserMixin):
@@ -30,23 +30,23 @@ class User(db.Model, UserMixin):
         db.session.commit()
 
 
-class Product(db.Model):
+class Exercise(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    product_id = db.Column(db.Integer, nullable=False, unique=True )
+    exercise_id = db.Column(db.Integer, nullable=False, unique=True )
     title = db.Column(db.String(100), nullable=False, unique=True )
     price = db.Column(db.Numeric(10,2))
     description = db.Column(db.String)
     category = db.Column(db.String)
     img_url = db.Column(db.String)
-    carted = db.relationship('User',
-        secondary = 'my_cart',
-        backref = 'carted',
+    planed = db.relationship('User',
+        secondary = 'my_plan',
+        backref = 'planed',
         lazy = 'dynamic'
     )
 
 
-    def __init__(self, product_id, title, price, description, category, img_url):
-        self.product_id = product_id
+    def __init__(self, exercise_id, title, price, description, category, img_url):
+        self.exercise_id = exercise_id
         self.title = title
         self.price = price
         self.description = description
@@ -54,22 +54,22 @@ class Product(db.Model):
         self.img_url = img_url
 
     
-    def saveToCart(self, user):
-        self.carted.append(user)
+    def saveToplan(self, user):
+        self.planed.append(user)
         db.session.commit()
 
-    def deleteFromCart(self, user):
-        self.carted.remove(user)
+    def deleteFromplan(self, user):
+        self.planed.remove(user)
         db.session.commit()
         
     def saveChanges(self):
         db.session.commit()
 
-    def saveProduct(self):
+    def saveExercise(self):
         db.session.add(self)
         db.session.commit()
 
-    def deleteProduct(self):
+    def deleteExercise(self):
         db.session.delete(self)
         db.session.commit()
     
@@ -78,7 +78,7 @@ class Product(db.Model):
         return {
             'id' : self.id,
             'title' : self.title,
-            'product_id' : self.product_id,
+            'exercise_id' : self.exercise_id,
             'price' : self.price,
             'description' : self.description,
             'category' : self.category,

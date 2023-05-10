@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="exercisetitle">xercise Info</h1> 
+
+<div class="singlecard" style="width: 18rem;">
+  <img src="{{ exercise.img_url }}" class="card-img-top" alt="{{ exercise.title }}"></a>
+  <div class="card-body">
+    <h5 class="card-title">{{ exercise.title }}</h5>
+    <p class="card-text">{{ exercise.price }}</p>
+    <p class="card-text">{{ exercise.description }}</p>
+    <p class="card-text">{{ exercise.category }}</p>
+    <a href="{{ url_for('plan.addToplan', exercise_id=exercise.exercise_id) }}" class="btn btn-dark">Add to plan!</a>
+  </div>
+</div>
+
+
+{% endblock %}

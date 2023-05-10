@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>plan Total: ${{total}} </h1>
+<a href="{{ url_for('plan.removeAllFromplan') }}" class="btn btn-outline-success">Empty plan</a>
+{% for e in exercise %}
+<div class="exercisecard" style="width: 18rem;">
+    <img src="{{ e.img_url }}" class="card-img-top" alt="{{ e.title }}">
+    <div class="card-body">
+        <h5 class="card-title">{{ e.title }}</h5>
+        <p class="card-text">{{ e.price }}</p>
+        <p class="card-text">{{ e.description }}</p>
+        <p class="card-text">{{ e.category }}</p>
+        <a href="{{exercise.id}}"></a>
+        <a href="{{ url_for('plan.removeFromplan', exercise_id = e.id)}}" class="btn btn-success">Delete Item</a>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

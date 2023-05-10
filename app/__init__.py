@@ -4,9 +4,9 @@ from flask import Flask
 from config import Config
 
 from .auth.routes import auth
-from .cart.routes import cart
+from .plan.routes import plan
 
-from .models import db, User, Product
+from .models import db, User, Exercise
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_cors import CORS
@@ -29,6 +29,6 @@ login.init_app(app)
 login.login_view='auth.loginPage'
 
 app.register_blueprint(auth)
-app.register_blueprint(cart)
+app.register_blueprint(plan)
 
 from . import routes 

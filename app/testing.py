@@ -1,21 +1,21 @@
-from models import Product
-from api.services import get_products
+from models import Exercise
+from api.services import get_exercise
 from flask_login import current_user
 
-x = get_products(12)
+x = get_exercise(12)
 print(f"~~~~{x}")
 
-p = Product(title=x['product_name'],price=x['price'],description=x['description'],category=x['category'],img_url=x['product_image'])
+e = Exercise(title=x['exercise_name'],price=x['price'],description=x['description'],category=x['category'],img_url=x['exercise_image'])
 
-p.saveProduct()
+e.saveExercise()
 
 # TO add to DB
 @app.route('/sendit')
 def sendIt():
-    x = get_products(20)
+    x = get_exercise(20)
     print("ADDED TO DB")
-    p = Product(product_id=x['product_id'],title=x['product_name'],price=x['price'],description=x['description'],category=x['category'],img_url=x['product_image'])
-    p.saveProduct()
+    e = Exercise(exercise_id=x['exercise_id'],title=x['exercise_name'],price=x['price'],description=x['description'],category=x['category'],img_url=x['exercise_image'])
+    e.saveExercise()
     return render_template('index.html')
 
 #html for it

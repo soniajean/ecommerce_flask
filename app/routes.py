@@ -4,8 +4,8 @@ from . import app
 from flask import render_template, request, url_for, redirect
 from flask_login import current_user, login_user, logout_user
 
-from .api.services import get_products
-from .models import User, Product
+from .api.services import get_exercise
+from .models import User, Exercise
 
 @app.route('/')
 def homePage():
