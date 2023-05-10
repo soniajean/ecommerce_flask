@@ -15,7 +15,7 @@ def getExercise():
     }
 
 @api.get('/exercise/<int:exercise_id>')
-def getSingleExcercise(exercise_id):
+def getSingleExercise(exercise_id):
     e = Exercise.query.get(exercise_id)
     if e:
         exercise = e.to_dict()

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-3">
+            <h5>Create New Exercise</h5>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+
+        <form method="POST" class='col-6'>
+            {{ form.hidden_tag() }}
+
+            {{ form.title(class='form-control', placeholder='Title', value=exer.title) }}
+            {{ form.desc(class='form-control', placeholder='Description', value=exer.desc) }}
+            {{ form.price(class='form-control', placeholder='Price', value=exer.price) }}
+            {{ form.category(class='form-control', placeholder='Category', value=exer.category) }}
+            {{ form.img_url(class='form-control', placeholder='img_url', value=exer.img_url) }}
+            {{ form.rating(class='form-control', placeholder='Rating', value=exer.rating) }}
+            {{ form.submit(class='btn btn-primary', placeholder='Create Exercise!') }}
+        </form>
+        
+    </div>
+
+    {% endblock %}

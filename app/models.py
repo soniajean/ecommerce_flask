@@ -32,12 +32,12 @@ class User(db.Model, UserMixin):
 
 class Exercise(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    exercise_id = db.Column(db.Integer, nullable=False, unique=True )
-    title = db.Column(db.String(100), nullable=False, unique=True )
-    price = db.Column(db.Numeric(10,2))
-    description = db.Column(db.String)
-    category = db.Column(db.String)
-    img_url = db.Column(db.String)
+    name = db.Column(db.String(100), nullable=False, unique=True )
+    type = db.Column(db.String(100), nullable=False, unique=False )
+    muscle = db.Column(db.String(100), nullable=False, unique=False)
+    equipment = db.Column(db.String)
+    difficulty = db.Column(db.String)
+    instructions = db.Column(db.String)
     planed = db.relationship('User',
         secondary = 'my_plan',
         backref = 'planed',
@@ -45,13 +45,15 @@ class Exercise(db.Model):
     )
 
 
-    def __init__(self, exercise_id, title, price, description, category, img_url):
+    def __init__(self, exercise_id, name, type, muscle, equipment, difficulty, instructions):
         self.exercise_id = exercise_id
-        self.title = title
-        self.price = price
-        self.description = description
-        self.category = category
-        self.img_url = img_url
+        self.name = name
+        self.type = type
+        self.muscle = muscle
+        self.equipment = equipment
+        self.dificulty = difficulty
+        self.instructions = instructions
+        
 
     
     def saveToplan(self, user):
@@ -76,13 +78,13 @@ class Exercise(db.Model):
   
     def to_dict(self):
         return {
-            'id' : self.id,
-            'title' : self.title,
             'exercise_id' : self.exercise_id,
-            'price' : self.price,
-            'description' : self.description,
-            'category' : self.category,
-            'img_url' : self.img_url,           
+            'name' : self.name,
+            'type' : self.type,
+            'muscle' : self.muscle,
+            'equipment' : self.equipment,
+            'difficulty' : self.difficulty,   
+            'instructions' : self.instructions,         
             'item' : self.item.username
 
         }

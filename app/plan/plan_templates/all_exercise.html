@@ -6,7 +6,7 @@
 {% for e in exercise %}
 <h1>{{ e.title }}</h1> 
 <div class="exercisecard" style="width: 18rem;">
-    <a href="{{ url_for('plan.viewSingleexercise', exercise_id=p.exercise_id) }}"><img src="{{ e.img_url }}" class="card-img-top" alt="{{ e.title }}"></a></a>
+    <a href="{{ url_for('plan.viewSingleExercise', exercise_id=e.exercise_id) }}"><img src="{{ e.img_url }}" class="card-img-top" alt="{{ e.title }}"></a></a>
     <div class="card-body">
         <h5 class="card-title">{{ e.title }}</h5>
         <p class="card-text">{{ e.price }}</p>

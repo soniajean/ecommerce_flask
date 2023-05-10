@@ -13,7 +13,7 @@ def viewMyplan():
     return render_template('my_plan.html', exercise=exercise, total=plan_total)
 
 @plan.route('/add/<int:exercise_id>')
-def addToplan(exercise_id):
+def addToPlan(exercise_id):
     exercise = Exercise.query.filter_by(exercise_id=exercise_id).first()
     exercise.saveToplan(current_user)
     exercise_name=exercise.title
