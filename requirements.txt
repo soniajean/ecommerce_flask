@@ -1,5 +1,4 @@
 alembic==1.10.4
-axios==0.3.0
 blinker==1.6.2
 certifi==2023.5.7
 cffi==1.15.1
