@@ -30,13 +30,13 @@ body {
     margin: auto
 }
 
-.title { font-family: "Brush Script MT", cursive; 
+.title { font-family: "Calibri", script; 
     font-size: 200px; 
     font-style: normal; 
     font-variant: normal; 
-    font-weight: 700; 
+    font-weight: 200; 
     line-height: 200px;
-    color: white;
+    color: rgb(161, 18, 18);
 
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 
@@ -60,23 +60,8 @@ body {
     margin: auto
 }
 
-.aboutuspic {
-    
-    width: auto
-}
 
-.aboutustitle {
-    font-family: "Brush Script MT", cursive; 
-    font-size: 100px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 700; 
-    line-height: 200px;
-    color:white;
-    background-color: darkseagreen;
 
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
 
 .about-text{
     color: black;

@@ -11,6 +11,3 @@ from .models import User, Exercise
 def homePage():
     return render_template('index.html')
 
-@app.route('/about-us')
-def aboutUs():
-    return render_template('aboutus.html')
