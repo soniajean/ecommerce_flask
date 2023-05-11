@@ -13,7 +13,7 @@
         <h6 class="card-subtitle mb-2 text-muted">{{ exer.desc }} miles</h6>
         <p class="card-text">{{exer.desc}}</p>
         <!--  -->
-        <a href="{{ url_for('shop.updateExer', exer_id=exer.id) }}" class="btn btn-primary">Update</a>
+        <a href="{{ url_for('search.updateExer', exer_id=exer.id) }}" class="btn btn-primary">Update</a>
         <!-- <a href="#" class="btn btn-danger">Delete</a> -->
 
         <!-- Button trigger modal -->
@@ -36,7 +36,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <!--  -->
-                        <a href="{{ url_for('shop.delExer', exer_id=exer.id) }}" type="button"
+                        <a href="{{ url_for('search.delExer', exer_id=exer.id) }}" type="button"
                             class="btn btn-danger">Delete</a>
                     </div>
                 </div>

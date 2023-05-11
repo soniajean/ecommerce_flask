@@ -12,15 +12,12 @@ plan = db.Table(
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50), nullable=False, )
-    last_name = db.Column(db.String(50), nullable=False, )
     username = db.Column(db.String, nullable=False, unique=True)
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False )
     
-    def __init__(self, first_name, last_name, username, email, password):
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self,username, email, password):
+     
         self.username = username
         self.email = email
         self.password = generate_password_hash(password)
@@ -32,6 +29,7 @@ class User(db.Model, UserMixin):
 
 class Exercise(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    exercise_id = db.Column(db.String(50), nullable=True, )
     name = db.Column(db.String(100), nullable=False, unique=True )
     type = db.Column(db.String(100), nullable=False, unique=False )
     muscle = db.Column(db.String(100), nullable=False, unique=False)
@@ -45,46 +43,53 @@ class Exercise(db.Model):
     )
 
 
-    def __init__(self, exercise_id, name, type, muscle, equipment, difficulty, instructions):
+    def __init__(self, id, exercise_id, name, type, muscle, equipment, difficulty, instructions):
+        self.id = id
         self.exercise_id = exercise_id
         self.name = name
         self.type = type
         self.muscle = muscle
         self.equipment = equipment
-        self.dificulty = difficulty
+        self.difficulty = difficulty
         self.instructions = instructions
-        
 
-    
-    def saveToplan(self, user):
-        self.planed.append(user)
-        db.session.commit()
-
-    def deleteFromplan(self, user):
-        self.planed.remove(user)
-        db.session.commit()
-        
-    def saveChanges(self):
-        db.session.commit()
-
-    def saveExercise(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def deleteExercise(self):
-        db.session.delete(self)
-        db.session.commit()
-    
-  
     def to_dict(self):
         return {
+            'id': self.id,
             'exercise_id' : self.exercise_id,
             'name' : self.name,
             'type' : self.type,
             'muscle' : self.muscle,
             'equipment' : self.equipment,
             'difficulty' : self.difficulty,   
-            'instructions' : self.instructions,         
-            'item' : self.item.username
-
+            'instructions' : self.instructions       
         }
+        
+
+    def saveExercise(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def saveChanges(self):
+        db.session.commit()
+
+    def deleteExercise(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def saveToPlan(self, user):
+        self.planed.append(user)
+        db.session.commit()
+
+    def deleteFromPlan(self, user):
+        self.planed.remove(user)
+        db.session.commit()
+        
+    
+
+   
+
+   
+    
+  
+   

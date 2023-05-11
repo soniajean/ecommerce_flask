@@ -3,7 +3,7 @@
 {% block content %}
 <h1 class="exercisetitle">Check out our exercise</h1> 
 
-{% for e in exercise %}
+{% for e in exercises %}
 <h1>{{ e.title }}</h1> 
 <div class="exercisecard" style="width: 18rem;">
     <a href="{{ url_for('plan.viewSingleExercise', exercise_id=e.exercise_id) }}"><img src="{{ e.img_url }}" class="card-img-top" alt="{{ e.title }}"></a></a>
@@ -11,7 +11,7 @@
         <h5 class="card-title">{{ e.title }}</h5>
         <p class="card-text">{{ e.price }}</p>
  
-        <a href="{{ url_for('plan.addToplan', exercise_id=e.exercise_id) }}" class="btn btn-dark">Add to plan!</a>
+        <a href="{{ url_for('plan.addToPlan', exercise_id=e.exercise_id) }}" class="btn btn-dark">Add to plan!</a>
         <a href="{{ url_for('plan.viewSingleExercise', exercise_id=e.exercise_id) }}" class="btn btn-outline-dark">View Details</a>
     </div>
 </div>

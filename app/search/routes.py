@@ -6,24 +6,25 @@ search = Blueprint('search', __name__, template_folder='search_templates')
 
 @search.route('/search', methods=['GET'])
 def search_home():
-    exer = Exercise.query.order_by(Exercise.date_created.desc()).all()
-    return render_template('shop_home.html', exer = exer)
+    exers = Exercise.query.order_by(Exercise.date_created.desc()).all()
+    return render_template('shop_home.html', exers = exers)
 
 @search.route('/search/create', methods=['GET', 'POST'])
 def createExer():
     form = CreateExerForm()
     if request.method == 'POST':
         if form.validate():
-            exercise_id = form.id.data
+            exercise_id = form.exercise_id.data
             id = form.id.data
-            title = form.title.data
-            price = form.price.data
-            desc = form.desc.data
-            category = form.category.data
-            img_url = form.img_url.data
+            name = form.name.data
+            type = form.type.data
+            muscle = form.muscle.data
+            equipment = form.equipment.data
+            difficulty = form.difficulty.data
+            instructions = form.instructions.data
             date_created = form.date_created.data
 
-            new = Exercise(id, exercise_id, title, price, desc, category, img_url, date_created)
+            new = Exercise(id, exercise_id, name, type, muscle, equipment, difficulty, instructions, date_created)
             new.saveExercise()
             flash('Exercise created!', category='success')
             return redirect(url_for('search.search_home'))
@@ -41,28 +42,30 @@ def updateExer(exer_id):
     if request.method == 'POST':
        exercise_id = form.exercise_id.data
        id = form.id.data
-       title = form.title.data
-       price = form.price.data
-       desc = form.desc.data
-       category = form.category.data
-       img_url = form.img_url.data
+       name = form.name.data
+       type = form.type.data
+       muscle = form.muscle.data
+       equipment = form.equipment.data
+       difficulty = form.difficulty.data
+       instructions = form.instructions.data
        date_created = form.date_created.data
 
        exer.exer_id = exercise_id
        exer.id = id
-       exer.title = title
-       exer.price = price
-       exer.desc = desc
-       exer.category = category
-       exer.img_url = img_url
+       exer.name = name
+       exer.type = type
+       exer.muscle = muscle
+       exer.equipment= equipment
+       exer.difficulty = difficulty
+       exer.instructions = instructions
        date_created = date_created
        exer.saveChanges()
        flash('Exercise updated!', category='success')
-       return redirect(url_for('shop.indProd', exer_id=exer_id))
+       return redirect(url_for('search.indProd', exer_id=exer_id))
     return render_template('update_exer.html', exer=exer, form=form)
 
 @search.get('/search/delete/<int:exer_id>')
-def delProd(exer_id):
+def delExer(exer_id):
     exer = Exercise.query.get(exer_id)
     exer.deleteExercise()
     flash('Exercise has been deleted- Byebye!', category='danger')

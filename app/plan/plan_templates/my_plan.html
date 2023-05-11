@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<h1>plan Total: ${{total}} </h1>
-<a href="{{ url_for('plan.removeAllFromplan') }}" class="btn btn-outline-success">Empty plan</a>
-{% for e in exercise %}
+<h1>Plan Total: ${{total}} </h1>
+<a href="{{ url_for('plan.removeAllFromPlan') }}" class="btn btn-outline-success">Empty plan</a>
+{% for e in exercises %}
 <div class="exercisecard" style="width: 18rem;">
     <img src="{{ e.img_url }}" class="card-img-top" alt="{{ e.title }}">
     <div class="card-body">
@@ -12,8 +12,8 @@
         <p class="card-text">{{ e.price }}</p>
         <p class="card-text">{{ e.description }}</p>
         <p class="card-text">{{ e.category }}</p>
-        <a href="{{exercise.id}}"></a>
-        <a href="{{ url_for('plan.removeFromplan', exercise_id = e.id)}}" class="btn btn-success">Delete Item</a>
+        <a href="{{exercises.id}}"></a>
+        <a href="{{ url_for('plan.removeFromPlan', exercise_id = e.id)}}" class="btn btn-success">Delete Item</a>
     </div>
 </div>
 {% endfor %}
