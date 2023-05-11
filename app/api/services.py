@@ -1,19 +1,17 @@
 
-def get_exercise(products):
-    url= f'https://fakestoreapi.com/products/{products}'
-    response = requests.get(url)
+def get_exercise():
+    url = "https://exercisedb.p.rapidapi.com/exercises"
+    headers = {
+	"X-RapidAPI-Key": "28dfc0e2a6mshfd18a7f7d3c3901p173983jsncd5d692debd5",
+	"X-RapidAPI-Host": "exercisedb.p.rapidapi.com"
+}
+
+    response = requests.get(url, headers=headers)
     if response.ok:
         data = response.json()
-        product = {
-        'product_id' : data["id"],
-        'product_name' : data["title"],
-        'price' : data["price"],
-        'description' : data["description"],
-        'category': data["category"],
-        'product_image' : data["image"]
-        }
-        return product
+        print(data)
     else:
         return None
 
-# print(get_products(1))
+
+
