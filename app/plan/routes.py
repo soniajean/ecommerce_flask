@@ -42,4 +42,4 @@ def viewSingleExercise(exercise_id):
 @plan.route('/view-all-exercise')
 def viewAllExercises():
     exercise = Exercise.query.order_by(Exercise.exercise_id).all()
-    return render_template('all_exercise.html', exercises=exercises)
+    return render_template('all_exercise.html', exercise=exercise)

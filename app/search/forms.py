@@ -4,27 +4,17 @@ from wtforms.validators import DataRequired
 
 
 
-class CreateExerForm(FlaskForm):
+class ViewExerForm(FlaskForm):
     id = StringField('id') 
-    exer_id = StringField('exer_id') 
+    exercise_id = StringField('exer_id') 
     name = StringField("Name", validators = [DataRequired()])
-    type = StringField("Type")
+    type = IntegerField('Type')
     muscle = StringField("Muscle")
+    difficuty = StringField("Difficulty")
     equipment = StringField("Equipment")
-    difficulty = StringField("Difficulty")
     instructions = IntegerField('Instructions')
     date_created = StringField('Date Created')
     submit = SubmitField()
 
 
-class UpdateExerForm(FlaskForm):
-    id = StringField('id') 
-    exer_id = StringField('exer_id') 
-    name = StringField("Name", validators = [DataRequired()])
-    type = StringField("Type")
-    muscle = StringField("Muscle")
-    equipment = StringField("Equipment")
-    difficulty = StringField("Difficulty")
-    instructions = IntegerField('Instructions')
-    date_created = StringField('Date Created')
-    submit = SubmitField()
+

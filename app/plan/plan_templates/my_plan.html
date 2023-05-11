@@ -6,12 +6,12 @@
 <a href="{{ url_for('plan.removeAllFromPlan') }}" class="btn btn-outline-success">Empty plan</a>
 {% for e in exercises %}
 <div class="exercisecard" style="width: 18rem;">
-    <img src="{{ e.img_url }}" class="card-img-top" alt="{{ e.title }}">
+    <img src="{{ e.img_url }}" class="card-img-top" alt="{{ e.name }}">
     <div class="card-body">
-        <h5 class="card-title">{{ e.title }}</h5>
-        <p class="card-text">{{ e.price }}</p>
-        <p class="card-text">{{ e.description }}</p>
-        <p class="card-text">{{ e.category }}</p>
+        <h5 class="card-title">{{ e.name }}</h5>
+        <p class="card-text">{{ e.type }}</p>
+        <p class="card-text">{{ e.instructions }}</p>
+        <p class="card-text">{{ e.type}}</p>
         <a href="{{exercises.id}}"></a>
         <a href="{{ url_for('plan.removeFromPlan', exercise_id = e.id)}}" class="btn btn-success">Delete Item</a>
     </div>

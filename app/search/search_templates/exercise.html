@@ -7,11 +7,11 @@
 <div class="card" style="width: 18rem;">
     <img src="{{exer.img_url}}" class="card-img-top" alt="{{exer.name}}">
     <div class="card-body">
-        <h5 class="card-title">{{exer.title}}-- (A {{exer.desc}} {{exer.category}} {{exer.rating}})</h5>
+        <h5 class="card-title">{{exer.name}}-- (A {{exer.name}} {{exer.type}} {{exer.muscle}})</h5>
         <!-- Grabbed subtitle text from another card here for author -->
-        <h4>Price: ${{exer.price}}</h4>
-        <h6 class="card-subtitle mb-2 text-muted">{{ exer.desc }} miles</h6>
-        <p class="card-text">{{exer.desc}}</p>
+        <h4>Price: ${{exer.instructions}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{ exer.name }}calories</h6>
+        <p class="card-text">{{exer.name}}</p>
         <!--  -->
         <a href="{{ url_for('search.updateExer', exer_id=exer.id) }}" class="btn btn-primary">Update</a>
         <!-- <a href="#" class="btn btn-danger">Delete</a> -->

@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row justify-content-center mt-3 mb-3">
     <div class="col-3 p-3">
-      <a href="{{ url_for('search.createExer') }}" class="btn btn-outline-dark">Create New Exercise</a>
+      <a href="{{ url_for('search.Exercise') }}" class="btn btn-outline-dark">Search</a>
     </div>
   </div>
 
@@ -20,12 +20,12 @@
         <a href="{{url_for('search.indExer', exer_id=e.id)}}"><img src="{{e.img_url}}" class="card-img-top"
             alt="{{e.name}}"></a>
         <div class="card-body">
-          <h5 class="card-title">{{e.title}} {{e.desc}} {{e.category}}</h5>
+          <h5 class="card-title">{{e.name}} {{e.type}} {{e.instructions}}</h5>
           <!-- Grabbed subtitle text from another card here for author -->
-          <h4>Price: ${{ e.price }}</h4>
-          <h6 class="card-subtitle mb-2 text-muted">Special name? {{ e.title }}</h6>
-          <h6 class="card-subtitle mb-2 text-muted">Miles: {{e.rating}}</h6>
-          <p class="card-text">{{e.desc}}</p>
+          <h4>Name: ${{ e.name }}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">Special name? {{ e.name }}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">How?: {{e.instructions}}</h6>
+          <p class="card-text">{{e.type}}</p>
           <p><small>Posted: {{ e.date_created }}</small></p>
         </div>
       </div>
