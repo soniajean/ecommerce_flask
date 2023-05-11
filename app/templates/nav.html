@@ -10,25 +10,17 @@
         <li class="nav-item">
        
           {% if current_user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link">Welcome {{current_user.username}}!</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('api.getExercise') }}"><i class="fa-solid fa-tags"></i> Search Exercises</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('plan.viewMyPlan') }}"><i class="fa-solid fa-plan-shopping"></i> My
-            plan</a>
-        </li>
-        <a class="btn btn-outline-success justify-content-end" href="{{ url_for('auth.logOut') }}"
-          role="button">Logout</a>
+       
+       
       </ul>
 
       {%else%}
 
-      <a class="btn btn-outline-dark justify-content-end" href="{{ url_for('auth.loginPage') }}" role="button">Login</a>
-      <a class="btn btn-outline-dark justify-content-end" href="{{ url_for('auth.registerPage') }}"
-        role="button">Register</a>
+   
 
       {% endif %}
     </div>
