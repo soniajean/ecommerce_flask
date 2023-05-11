@@ -50,8 +50,8 @@ def registerPage():
                 flash('That username already exists, please try another!', 'warning')
                 return redirect(url_for('auth.registerPage'))
            
-            user = User()            
-            user.saveUser(username,password)
+            user = User(username,password)            
+            user.saveUser()
 
             flash(f'Welcome to INSTURBlog {user.username}', 'success')
             return redirect(url_for('auth.loginPage'))
