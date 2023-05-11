@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import UserMixin
-from werkzeug.security import generate_password_hash
+
 db = SQLAlchemy()
 
 plan = db.Table(
@@ -14,15 +14,35 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False )
+    planed = db.relationship('Exercise',
+        secondary = 'my_plan',
+        backref = 'planed',
+        lazy = 'dynamic'
+    )
     
     def __init__(self,username,password):
      
         self.username = username
-        self.password = generate_password_hash(password)
+        self.password = password
 
     def saveUser(self):
         db.session.add(self)
         db.session.commit()
+
+    def saveToPlan(self, exercise):
+        self.planed.append(exercise)
+        db.session.commit()
+
+    def deleteFromPlan(self, exercise):
+        self.planed.remove(exercise)
+        db.session.commit()
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username' : self.username
+            
+        }
 
 
 class Exercise(db.Model):
@@ -33,11 +53,7 @@ class Exercise(db.Model):
     equipment = db.Column(db.String)
     difficulty = db.Column(db.String)
     instructions = db.Column(db.String)
-    planed = db.relationship('User',
-        secondary = 'my_plan',
-        backref = 'planed',
-        lazy = 'dynamic'
-    )
+    
 
 
     def __init__(self, id, name, type, muscle, equipment, difficulty, instructions):
@@ -72,13 +88,7 @@ class Exercise(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def saveToPlan(self, user):
-        self.planed.append(user)
-        db.session.commit()
 
-    def deleteFromPlan(self, user):
-        self.planed.remove(user)
-        db.session.commit()
         
     
 
