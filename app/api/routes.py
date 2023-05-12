@@ -6,14 +6,14 @@ api = Blueprint('api', __name__, url_prefix='/api')
 
 
 
-@api.get('/exercise')
-def getExercise():
-    exercise = Exercise.query.all()
-    exerciselist = [e.to_dict() for e in exercise]
-    return {
-        'status': 'ok',
-        'data': exerciselist
-    }
+# @api.get('/exercise')
+# def getExercise():
+#     exercise = Exercise.query.all()
+#     exerciselist = [e.to_dict() for e in exercise]
+#     return {
+#         'status': 'ok',
+#         'data': exerciselist
+#     }
 
 @api.get('/exercise/<int:id>')
 def SingleExercise(id):
@@ -30,8 +30,8 @@ def SingleExercise(id):
     }
 
 
-@api.get('/apiexercise')
-def get_api_exercise():
+@api.get('/exercise')
+def getAPIExercise():
     url = "https://exercisedb.p.rapidapi.com/exercises"
     headers = {
 	"X-RapidAPI-Key": "28dfc0e2a6mshfd18a7f7d3c3901p173983jsncd5d692debd5",
