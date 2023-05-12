@@ -1,11 +1,3 @@
 {
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "server": "localhost",
-            "driver": "PostgreSQL",
-            "name": "cap",
-            "connectString": "postgres://pmuswfjz:rvGMc8aRG81BHBz1Jqh-DNCVxTnCkqIG@drona.db.elephantsql.com/pmuswfjz"
-        }
-    ]
+    "sqltools.connections": []
 }

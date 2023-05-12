@@ -1,3 +1,4 @@
+import requests
 
 def get_exercise():
     url = "https://exercisedb.p.rapidapi.com/exercises"

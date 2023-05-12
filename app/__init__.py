@@ -1,6 +1,7 @@
 # This is how flask knows what to do with it's self. This explains flask is
 from flask import Flask
 from config import Config
+from .auth.routes import auth
 from .api.routes import api
 from .models import db, User, Exercise
 from flask_migrate import Migrate
@@ -10,6 +11,7 @@ from flask_moment import Moment
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 login = LoginManager()
 moment = Moment(app)
 
@@ -23,9 +25,11 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 login.init_app(app)
-
+login.login_view='auth.loginPage'
 
 app.register_blueprint(api)
+app.register_blueprint(auth)
+
 
 
 from . import routes 

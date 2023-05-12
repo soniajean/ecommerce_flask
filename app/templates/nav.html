@@ -1,28 +1,35 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light ">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="{{ url_for('homePage') }}">GYM APP</a>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+    <a class="navbar-brand" href="{{ url_for('homePage') }}">Supplements</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ url_for('homePage') }}">Home</a>
         </li>
         <li class="nav-item">
-       
-         
-        
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('api.getExercise') }}"><i class="fa-solid fa-tags"></i> Search Exercises</a>
+          <a class="nav-link">Welcome {{current_user.first_name}}!</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('api.all_Exercises') }}"><i class="fa-solid fa-tags"></i> View Exercises</a>
         </li>
        
-       
+        <a class="btn btn-outline-primary justify-content-end" href="#"
+        role="button">hello</a>
+        <a class="btn btn-outline-primary justify-content-end" href="{{ url_for('auth.logOut') }}"
+          role="button">Logout</a>
       </ul>
 
-      
-   
-
-     
+      {%else%}
+      <div class="justify-content-end">
+        <a class="btn btn-outline-primary justify-content-end" href="{{ url_for('auth.loginPage') }}"
+          role="button">Login</a>
+        <a class="btn btn-outline-primary justify-content-end" href="{{ url_for('auth.registerPage') }}"
+          role="button">Register</a>
+      </div>
+      {% endif %}
     </div>
-
-  </div>
-</nav>
